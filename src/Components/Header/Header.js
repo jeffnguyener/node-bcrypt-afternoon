@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Header.css';
+import axios from 'axios'
 
 export default class Header extends Component {
   constructor() {
@@ -29,10 +30,12 @@ export default class Header extends Component {
 
   login() {
     // axios POST to /auth/login here
+    axios.post('/auth/login')
   }
 
   register() {
     // axios POST to /auth/register here
+    axios.post('/auth/register')
   }
 
   logout() {
