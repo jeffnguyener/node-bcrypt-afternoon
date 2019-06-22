@@ -27,6 +27,7 @@ app.get('/auth/logout', authCtrl.logout)
 
 app.get('/api/treasure/dragon', treasureCtrl.dragonTreasure)
 app.get('/api/treasure/user', auth.usersOnly, treasureCtrl.getUserTreasure)
+app.get('/api/treasure/all', auth.usersOnly, treasureCtrl.getAllTreasure)
 
 
 //POST ENDPOINTS
