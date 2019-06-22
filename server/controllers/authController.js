@@ -27,5 +27,9 @@ module.exports = {
         }
         req.session.user = { isAdmin: user.is_admin, username: user.name, id: user.id }
         return res.send(req.session.user)
-    }
+    },
+    logout: (req, res) => {
+        req.session.destroy();
+        return res.sendStatus(200);
+      }
 }

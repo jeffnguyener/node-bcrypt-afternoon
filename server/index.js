@@ -10,14 +10,18 @@ app.use(express.json())
 app.use(
     session({
         secret: SESSION_SECRET,
-        resave: false,
+        resave: true,
         saveUninitialized: false,
         cookie: {
-            maxAge: 1000 * 60 * 600
+            maxAge: 1000 * 60 * 60
         }
     }
 ))
 
+//GET ENDPOINTS
+app.get('/auth/logout', authCtrl.logout)
+
+//POST ENDPOINTS
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
 

@@ -30,7 +30,12 @@ export default class Header extends Component {
 
   login() {
     // axios POST to /auth/login here
-    axios.post('/auth/login')
+    const { username, password } = this.state
+    axios.post('/auth/login', {username, password}).then(user => { console.log(this.props)
+      this.props.updateUser(user.data)
+      this.setState({ username: '', password: ''})
+    })
+    .catch(err => alert(err.response.response))
   }
 
   register() {
@@ -48,6 +53,10 @@ export default class Header extends Component {
 
   logout() {
     // axios GET to /auth/logout here
+    axios.get('/auth/logout').then(() => {
+      this.props.updateUser({})
+    })
+    .catch(err => console.log(err))
   }
 
   render() {
