@@ -26,12 +26,14 @@ app.use(
 app.get('/auth/logout', authCtrl.logout)
 
 app.get('/api/treasure/dragon', treasureCtrl.dragonTreasure)
-app.get('/api/treasure/user', treasureCtrl.getUserTreasure);
+app.get('/api/treasure/user', auth.usersOnly, treasureCtrl.getUserTreasure)
 
 
 //POST ENDPOINTS
 app.post('/auth/register', authCtrl.register)
 app.post('/auth/login', authCtrl.login)
+
+app.post('/api/treasure/user', auth.usersOnly, treasureCtrl.addUserTreasure)
 
 massive(CONNECTION_STRING).then(database =>{
     app.set('db', database)
