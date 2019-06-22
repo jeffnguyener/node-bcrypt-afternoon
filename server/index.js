@@ -5,6 +5,8 @@ const session = require('express-session')
 const massive = require('massive')
 const authCtrl = require('./controllers/authController')
 const treasureCtrl = require('./controllers/treasureController')
+const auth = require('./middleware/authMiddleware');
+
 
 const app = express()
 
@@ -24,6 +26,8 @@ app.use(
 app.get('/auth/logout', authCtrl.logout)
 
 app.get('/api/treasure/dragon', treasureCtrl.dragonTreasure)
+app.get('/api/treasure/user', treasureCtrl.getUserTreasure);
+
 
 //POST ENDPOINTS
 app.post('/auth/register', authCtrl.register)
